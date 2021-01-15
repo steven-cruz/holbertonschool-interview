@@ -1,10 +1,10 @@
 #include <stdlib.h>
 #include "binary_trees.h"
 /**
- * make_heap - makes into max heap, needs some work :(
- * @new_node: the new node to evaluate
- * @value: the value of the new node
- * Return: a pointer to the node that contains the original value
+ * _height - measures the sum of heights of a binary tree
+ * @tree: pointer to the root node of the tree to measure the height
+ *
+ * Return: Height or 0 if tree is NULL
  */
 int _height(const binary_tree_t *tree)
 {
