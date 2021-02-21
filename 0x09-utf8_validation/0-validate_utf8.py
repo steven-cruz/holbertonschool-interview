@@ -8,23 +8,20 @@
 
 def validUTF8(data):
         '''Check UTF-8'''
-        if not data:
-            return False
-        byte = 0
-        for i in data:
-            if byte > 0:
-                if (i & 192) == 128:
-                    byte -= 1
-                else:
-                    return False
-            elif (i & 192) == 128:
+        bytes = 0
+    for num in data:
+        binary = format(num, '#010b')[-8:]
+        if bytes == 0:
+            for bit in binary:
+                if bit == '0':
+                    break
+                bytes += 1
+            if bytes == 0:
+                continue
+            if bytes == 1 or bytes > 4:
                 return False
-            elif (i & 224) == 192:
-                byte += 1
-            elif (i & 240) == 224:
-                byte += 2
-            elif (i & 248) == 240:
-                byte += 3
-            elif (i > 248):
+        else:
+            if not (binary[0] == '1' and binary[1] == '0'):
                 return False
-        return byte == 0
+        bytes -= 1
+    return bytes == 0
